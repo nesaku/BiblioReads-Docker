@@ -4,6 +4,6 @@ services:
     image: docker.io/nesaku/biblioreads:latest
     restart: unless-stopped
     ports:
-      - "3000:3000" # Replace with "127.0.0.1:3000:3000" if your using a reverse proxy
+      - "3000:3000" # Replace with "127.0.0.1:3000:3000" if you are using a reverse proxy
     environment:
       - "NEXT_TELEMETRY_DISABLED=1"
