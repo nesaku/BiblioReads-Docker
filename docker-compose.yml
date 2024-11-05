@@ -5,3 +5,12 @@ services:
     restart: unless-stopped
     ports:
       - "3000:3000" # Replace with "127.0.0.1:3000:3000" if you are using a reverse proxy
+    environment:
+      - NEXT_PUBLIC_HOST_URL=http://biblioreads.local
+      - NEXT_TELEMETRY_DISABLED=1
+    # an env file OR inline environment variables can be used
+    # env_file:
+    #   - .env
+    # OR
+    # environment:
+    #   - name=value

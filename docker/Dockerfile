@@ -26,6 +26,11 @@ COPY --from=build /app/public/ /app/public/
 COPY --from=build /app/.next/ /app/.next/
 COPY --from=build /app/node_modules/ /app/node_modules/
 
+RUN mkdir -p /app/public \
+    && chmod 755 /app/public \
+    && touch /app/public/__ENV.js \
+    && chmod 666 /app/public/__ENV.js
+
 USER node
 CMD [ "pnpm", "start" ]
 EXPOSE 3000

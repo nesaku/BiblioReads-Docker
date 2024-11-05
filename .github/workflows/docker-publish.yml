@@ -1,13 +1,13 @@
-name: Publish Docker Image
+name: Publish Testing Docker Image
 
+# Only run the action on git push for this testing image instead of a schedule
 on:
   push:
     branches:
       - "main"
-
-  schedule:
+    # schedule:
     # * is a special character in YAML so you have to quote this string
-    - cron: "0 */6 * * *"
+    # - cron: "0 */6 * * *"
 
 jobs:
   build:
