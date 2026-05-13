@@ -9,16 +9,13 @@ FROM node:alpine AS build
 WORKDIR /app
 COPY --from=clone /app/ /app/
 
-RUN npm install -g pnpm \
-    && pnpm install \
-    && pnpm build \
-    && pnpm prune --production
+RUN npm install \
+    && npm run build
 
 FROM node:alpine AS deploy
 WORKDIR /app
 
 ENV NEXT_TELEMETRY_DISABLED 1
-RUN npm install -g pnpm
 
 COPY --from=build /app/package.json /app/package.json
 COPY --from=build /app/next.config.js /app/next.config.js
@@ -32,5 +29,5 @@ RUN mkdir -p /app/public \
     && chmod 666 /app/public/__ENV.js
 
 USER node
-CMD [ "pnpm", "start" ]
+CMD [ "npm", "start" ]
 EXPOSE 3000
